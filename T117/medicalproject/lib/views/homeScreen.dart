@@ -1,8 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:medicalproject/views/ambulanceBooking.dart';
 import 'package:medicalproject/views/bloodDonationCamp.dart';
 import 'package:medicalproject/views/drawerMenu.dart';
+import 'package:medicalproject/views/hospitalServices.dart';
+import 'package:medicalproject/views/organDonationCamp.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -178,46 +181,51 @@ Padding(
    ),
       SizedBox(width:10),
   
-   Container(
+   InkWell(
+     onTap:(){
+       Get.to(OrganDonationCampScreen());
+     },
+        child: Container(
   
-        height:Get.height/7,
+          height:Get.height/7,
   
-        width:Get.height/7,
+          width:Get.height/7,
   
-        decoration:BoxDecoration(
+          decoration:BoxDecoration(
   
-    boxShadow: [
-      BoxShadow(
-        color: Colors.grey.withOpacity(0.5),
-        spreadRadius: 1,
-        blurRadius: 3,
-        offset: Offset(0, 3), // changes position of shadow
-      ),
-    ],
-    color:Colors.white,
-     //     border:Border.all(width:1,color:Colors.red),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 1,
+          blurRadius: 3,
+          offset: Offset(0, 3), // changes position of shadow
+        ),
+      ],
+      color:Colors.white,
+       //     border:Border.all(width:1,color:Colors.red),
   
-          borderRadius: BorderRadius.circular(10)
+            borderRadius: BorderRadius.circular(10)
+  
+          ),
+
+          child:Column(
+            mainAxisAlignment:MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height:Get.height/16,
+                child: Icon(Icons.account_balance,size: 50,color:Colors.red)),
+                Divider(height:0.5,color:Colors.black26),
+              SizedBox(height:5),
+              Container(
+                alignment: Alignment.center,
+                child: Text("Organ Donation Camp",textAlign:TextAlign.center,style:TextStyle(color:Colors.black,fontSize:16,)))
+
+            ],
+          )
   
         ),
-
-        child:Column(
-          mainAxisAlignment:MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              height:Get.height/16,
-              child: Icon(Icons.account_balance,size: 50,color:Colors.red)),
-              Divider(height:0.5,color:Colors.black26),
-            SizedBox(height:5),
-            Container(
-              alignment: Alignment.center,
-              child: Text("Organ Donation Camp",textAlign:TextAlign.center,style:TextStyle(color:Colors.black,fontSize:16,)))
-
-          ],
-        )
-  
-      ),
+   ),
   
     ],
   
@@ -241,89 +249,99 @@ Padding(
   
     children: [
   
-        Container(
+        InkWell(
+          onTap:(){
+Get.to(AmbulanceBooking());
+          },
+                  child: Container(
   
-        height:Get.height/7,
+          height:Get.height/7,
   
-        width:Get.height/7,
+          width:Get.height/7,
   
-        decoration:BoxDecoration(
+          decoration:BoxDecoration(
   
     boxShadow: [
       BoxShadow(
-        color: Colors.grey.withOpacity(0.5),
-        spreadRadius: 1,
-        blurRadius: 3,
-        offset: Offset(0, 3), // changes position of shadow
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 1,
+          blurRadius: 3,
+          offset: Offset(0, 3), // changes position of shadow
       ),
     ],
     color:Colors.white,
      //     border:Border.all(width:1,color:Colors.red),
   
-          borderRadius: BorderRadius.circular(10)
+            borderRadius: BorderRadius.circular(10)
   
-        ),
+          ),
 
-        child:Column(
-          mainAxisAlignment:MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              height:Get.height/16,
-              child: Icon(Icons.directions_car_outlined,size: 50,color:Colors.red)),
-          //   Divider(height:0.5,color:Colors.black26),
-            SizedBox(height:5),
-            Divider(height:0.5,color:Colors.black26),
-            Container(
-              alignment: Alignment.center,
-              child: Text("Emergency Ambulance Services",textAlign:TextAlign.center,style:TextStyle(color:Colors.black,fontSize:16,)))
+          child:Column(
+            mainAxisAlignment:MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height:Get.height/16,
+                child: Icon(Icons.directions_car_outlined,size: 50,color:Colors.red)),
+            //   Divider(height:0.5,color:Colors.black26),
+              SizedBox(height:5),
+              Divider(height:0.5,color:Colors.black26),
+              Container(
+                alignment: Alignment.center,
+                child: Text("Emergency Ambulance Services",textAlign:TextAlign.center,style:TextStyle(color:Colors.black,fontSize:16,)))
 
-          ],
-        )
+            ],
+          )
   
       ),
+        ),
   
   
-      Container(
+      InkWell(
+        onTap:(){
+          Get.to(HospitalServices());
+        },
+              child: Container(
   
-        height:Get.height/7,
+          height:Get.height/7,
   
-        width:Get.height/7,
+          width:Get.height/7,
   
-        decoration:BoxDecoration(
+          decoration:BoxDecoration(
   
     boxShadow: [
-      BoxShadow(
-        color: Colors.grey.withOpacity(0.5),
-        spreadRadius: 1,
-        blurRadius: 3,
-        offset: Offset(0, 3), // changes position of shadow
-      ),
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 1,
+          blurRadius: 3,
+          offset: Offset(0, 3), // changes position of shadow
+        ),
     ],
     color:Colors.white,
      //     border:Border.all(width:1,color:Colors.red),
   
-          borderRadius: BorderRadius.circular(10)
+            borderRadius: BorderRadius.circular(10)
+  
+          ),
+
+          child:Column(
+            mainAxisAlignment:MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height:Get.height/16,
+                child: Icon(Icons.home,size: 50,color:Colors.red)),
+                 Divider(height:0.5,color:Colors.black26),
+              SizedBox(height:5),
+           //  Divider(height:0.5,color:Colors.black26),
+              Container(
+                alignment: Alignment.center,
+                child: Text("Hospital Services",textAlign:TextAlign.center,style:TextStyle(color:Colors.black,fontSize:16,)))
+
+            ],
+          )
   
         ),
-
-        child:Column(
-          mainAxisAlignment:MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              height:Get.height/16,
-              child: Icon(Icons.home,size: 50,color:Colors.red)),
-               Divider(height:0.5,color:Colors.black26),
-            SizedBox(height:5),
-         //  Divider(height:0.5,color:Colors.black26),
-            Container(
-              alignment: Alignment.center,
-              child: Text("Hospital Services",textAlign:TextAlign.center,style:TextStyle(color:Colors.black,fontSize:16,)))
-
-          ],
-        )
-  
       ),
   
      Container(
