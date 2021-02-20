@@ -51,7 +51,7 @@ void checkAndForwordToTheNextScreen()async{
           Container(
                 alignment: Alignment.center,
         
-            child: Text("All About Your Health Care",textAlign:TextAlign.center,style:TextStyle(color:Colors.white,fontSize:20,fontWeight:FontWeight.bold)))
+            child: Text("All About Your Health Care.",textAlign:TextAlign.center,style:TextStyle(color:Colors.white,fontSize:20,fontWeight:FontWeight.bold)))
         ]
       ),
     );
