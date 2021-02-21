@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/route_manager.dart';
+import 'package:medicalproject/views/API.dart';
 import 'package:medicalproject/views/SignUpScreen.dart';
 import 'package:medicalproject/views/homeScreen.dart';
 import 'dart:convert' as convert;
@@ -17,15 +18,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
 
   
-
-    bool _showPasswordVisible = false;
+  bool _showPasswordVisible = false;
 
   TextEditingController emailControler = new TextEditingController();
   TextEditingController passwordController = new TextEditingController();
-
-
-
-
 
   var _formKey = GlobalKey<FormState>();
   bool enable = false;
@@ -33,22 +29,9 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isError = false;
 
 
-void login()async{
-  if(_formKey.currentState.validate()){
-
-         SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('userEmail', emailControler.text.toString());
 
 
-Get.offAll(HomePage());
 
-
-    notify("Login Successfully completed");
-  }
-  else
-  print("Sorry fill all field");
-  
-}
 
   void notify(String msg){
     Fluttertoast.showToast(
@@ -64,18 +47,66 @@ Get.offAll(HomePage());
   }
 
   
+
+
+
+
+  void login() async {
+    if (_formKey.currentState.validate()) {
+      print("${emailControler.text} - ${passwordController.text}");
+      setState(() {
+        isLogin = true;
+        isError = false;
+      });
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      Api()
+          .login(
+        emailControler.text,
+        passwordController.text,
+      )
+          .then((response) async {
+        if (response != null) {
+          await prefs.setInt('loggedin', 1);
+          await prefs.setString('customerId', response['customer_id']);
+
+          await prefs.setString(
+              'customerGroupId', response['customer_group_id']);
+
+          await prefs.setString('storeId', response['store_id']);
+
+          await prefs.setString('firstName', response['firstname']);
+
+          await prefs.setString('lastName', response['lastname']);
+
+          await prefs.setString('userEmail', response['email']);
+
+          await prefs.setString('mobileNumber', response['telephone']);
+
+          await prefs.setInt('cartItem', response['cart_count_products']);
+
+          await prefs.setString('wishListItem', response['wishlist_total']);
+           notify("Login Successfully completed");
+    Get.offAll(HomePage());
+        } else {
+                notify("Email and password are not matched");
+          setState(() {
+            isError = true;
+          });
+        }
+        setState(() {
+          isLogin = false;
+        });
+      });
+
+      // print(responce[]);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-      return Scaffold(
+    return Scaffold(
       appBar: AppBar(
-       // backgroundColor: Colors.white,
-        centerTitle: true,
-      //   leading: IconButton(
-      //     icon: Icon(Icons.arrow_back_ios, size: 25, color: Colors.orange),
-      //     onPressed: () {
-      //  //     Get.off(HomeScreen());
-      //     },
-      //   ),
+       centerTitle: true,
         title: Text("Login",
             style: TextStyle(
                 color: Colors.white,
@@ -213,24 +244,7 @@ Get.offAll(HomePage());
                                     color: Colors.yellow, width: 1),
                                 borderRadius: BorderRadius.circular(10))))),
               ),
-              Container(
-                  alignment: Alignment.centerRight,
-                  child: InkWell(
-                    onTap: () {
-                 //     Get.to(ForgetPasswordScreen());
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Text("Forgot Password? ",
-                          style: TextStyle(
-                              color: isLogin ? Colors.black54 : Colors.red,
-                              fontWeight: FontWeight.w300)),
-                    ),
-                  )),
-              SizedBox(
-                height: 5,
-              ),
-
+           
               Visibility(
                 visible: isError,
                 child: Container(
@@ -298,44 +312,12 @@ Get.offAll(HomePage());
                     ],
                   )),
               SizedBox(height: 10),
-              if(Get.arguments!=null)Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children:[
-                    Divider(height:3,color:Colors.blueGrey),
-                    Text("Or",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize:15,
-                    )),
-                    Divider(height:3,color:Colors.blueGrey),
-                  ]
-              ),
-              SizedBox(height: 10),
-              if(Get.arguments!=null)Center(
-                child: InkWell(
-                  onTap:(){
-              //      Get.off(GuestCheckout());
-                },
-                  child: Container(
-                      height: 50,
-                      width: 160,
-                      decoration: BoxDecoration(
-                        color: Colors.blueGrey,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      alignment: Alignment.center,
-                      child: Text("GUEST CHECKOUT",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold))),
-                ),
-              ),
+              
             ],
           ),
 
         )),
       ),
-    );}
+    );
+  }
 }

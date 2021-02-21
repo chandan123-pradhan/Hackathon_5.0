@@ -1,84 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:medicalproject/views/hospitalDetails.dart';
 
 
-class HospitalServices extends StatefulWidget {
+class DoctorsAppointment extends StatefulWidget {
   @override
-  _HospitalServicesState createState() => _HospitalServicesState();
+  _DoctorsAppointmentState createState() => _DoctorsAppointmentState();
 }
 
-class _HospitalServicesState extends State<HospitalServices> {
+class _DoctorsAppointmentState extends State<DoctorsAppointment> {
 
-List<String>cancerHospitalName=[
-"TATA Memorial Hospital, Mumbai",
-"All Indial Institute of Medical Science, New Delhi",
-"The Cancer Intiture, Adyar, Chennai",
-"Apollo Speiciality Hospital, Chennai",
-];
-List<String>hUrl=[
-"https://onco.com/chatbot/?flow=apptDirect&utm_source=google-search-oncobot-appt&utm_campaign=Geny-competition-panindia-tatamemorial&utm_medium=Hospital&utm_term=%2Btata%20%2Bhospital&campaignid=10013675210&adgroupid=100142321239&adid=459130716396&gclid=CjwKCAiAg8OBBhA8EiwAlKw3klJzaKAf0V017x_w288qYXwEw4RKyvwVW7uDjPD_Hh-lnmTcWKu3iBoCLloQAvD_BwE",
-"",
-"https://www.aiims.edu/en.html",
-"http://www.cancerinstitutewia.in/CI-WIA/index.html",
-"https://www.askapollo.com/physical-appointment/city/chennai"
+
+List<String>doctorsName=[
+"Dr. Vinod Raina",
+"Dr. Rahul Bhargava",
+"Dr. Manas Karla",
+
+"Dr. Vikas Dua",
 ];
 
-
-
-
-List<String>description=[
-
-"The Tata Memorial Hospital is situated in parel, Mumbai in inida. Also popularly known as TMH. it is a specialist cancer.Treatement and reserch center, closely associated with advanced center for tereatment."
-,
-"The All Indial Institute of Medical Science, New Delhi is situated in parel, Mumbai in inida. Also popularly known as TMH. it is a specialist cancer.Treatement and reserch center, closely associated with advanced center for tereatment."
-,
-
-
-
-"The The Cancer Intiture, Adyar, Chennai is situated in parel, Mumbai in inida. Also popularly known as TMH. it is a specialist cancer.Treatement and reserch center, closely associated with advanced center for tereatment."
-,
-
-
-
-
-"The Apollo Speiciality Hospital, Chennai is situated in parel, Mumbai in inida. Also popularly known as TMH. it is a specialist cancer.Treatement and reserch center, closely associated with advanced center for tereatment."
-,
-
-
-];
-
-
-
-List<String>_images=[
-  "images/tata.jpeg",
-  "images/aims.jpeg",
-  "images/apollo.jpeg",
-  "images/chennai.jpeg"
+List<String>image=[
+  "images/d1.jpg",
+  "images/d2.jpg",
+  "images/d3.jpg",
+  "images/d4.jpg"
 ];
 
 
 List<String>_hospitals=[
-"Cancer Hospital",
-"Heart Hospitals",
-"Eyes Hospitals",
+"Cancer Specilist",
+"Heart Specilist",
+"Eyes Specilist",
 "Others"
 ];
-
-
-
-
-
 int selectedCategory=0;
-
 
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+     return Scaffold(
       appBar: AppBar(
       centerTitle:true,
-      title:Text("Hospital Services",style:TextStyle(color:Colors.white,fontSize:16,fontWeight:FontWeight.bold)),
+      title:Text("Top Doctors",style:TextStyle(color:Colors.white,fontSize:16,fontWeight:FontWeight.bold)),
 
 actions: [
   Padding(
@@ -139,7 +101,7 @@ child:ListView.builder(
 
 
 body: selectedCategory==0?ListView.builder(
-  itemCount: cancerHospitalName.length,
+  itemCount: doctorsName.length,
   itemBuilder: (BuildContext context, index){
     return Padding(
       padding: const EdgeInsets.fromLTRB(15,15,15,0),
@@ -152,16 +114,16 @@ body: selectedCategory==0?ListView.builder(
 
           // ]
           // );
-          Navigator.push(
-            context, MaterialPageRoute(
-              builder:(_) =>HospitalDetails(
-                title:cancerHospitalName[index],
-                image:_images[index],
-                url:hUrl[index],
-                description:description[index],
-              )
-            )
-          );
+          // Navigator.push(
+          //   context, MaterialPageRoute(
+          //     builder:(_) =>HospitalDetails(
+          //       title:cancerHospitalName[index],
+          //       image:_images[index],
+          //       url:hUrl[index],
+          //       description:description[index],
+          //     )
+          //   )
+          // );
         },
               child: Container(
           height:Get.height/5,
@@ -185,7 +147,7 @@ children: [
           ],
           image: DecorationImage(
             image: AssetImage(
-              _images[index]
+              image[index]
             ),
             fit: BoxFit.fill
           )
@@ -196,7 +158,7 @@ children: [
 
 Container(
   width:Get.width/1.8,
-  child: Text(cancerHospitalName[index],style:TextStyle(color:Colors.black,fontSize:15,fontWeight:FontWeight.bold)))
+  child: Text(doctorsName[index],style:TextStyle(color:Colors.black,fontSize:15,fontWeight:FontWeight.bold)))
 
 ],
 ),
@@ -226,5 +188,5 @@ child:Text("Currently unavailable",style:TextStyle(color:Colors.black54,fontSize
 
 
     );
-  }
+ }
 }

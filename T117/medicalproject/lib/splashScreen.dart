@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:medicalproject/views/homeScreen.dart';
 import 'package:medicalproject/views/loginScreen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -11,9 +12,28 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+ 
+    
+
+
 void checkAndForwordToTheNextScreen()async{
+   SharedPreferences prefs = await SharedPreferences.getInstance();
+
+String email=await prefs.getString('userEmail');
+
+
+
+
   await Timer(Duration(seconds:2),(){
-   Get.offAll(LoginScreen());
+
+if(email.isEmpty){
+Get.offAll(LoginScreen());
+}
+else
+Get.offAll(HomePage());
+
+   
+
 });
 }
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:medicalproject/views/ambulanceBooking.dart';
 import 'package:medicalproject/views/bloodDonationCamp.dart';
+import 'package:medicalproject/views/doctorsAppointment.dart';
 import 'package:medicalproject/views/drawerMenu.dart';
 import 'package:medicalproject/views/hospitalServices.dart';
 import 'package:medicalproject/views/organDonationCamp.dart';
@@ -344,47 +345,52 @@ Get.to(AmbulanceBooking());
         ),
       ),
   
-     Container(
+     InkWell(
+       onTap:(){
+Get.to(DoctorsAppointment());
+       },
+            child: Container(
   
-        height:Get.height/7,
+          height:Get.height/7,
   
-        width:Get.height/7,
+          width:Get.height/7,
   
-        decoration:BoxDecoration(
+          decoration:BoxDecoration(
   
     boxShadow: [
-      BoxShadow(
-        color: Colors.grey.withOpacity(0.5),
-        spreadRadius: 1,
-        blurRadius: 3,
-        offset: Offset(0, 3), // changes position of shadow
-      ),
+        BoxShadow(
+          color: Colors.grey.withOpacity(0.5),
+          spreadRadius: 1,
+          blurRadius: 3,
+          offset: Offset(0, 3), // changes position of shadow
+        ),
     ],
     color:Colors.white,
-     //     border:Border.all(width:1,color:Colors.red),
+       //     border:Border.all(width:1,color:Colors.red),
   
-          borderRadius: BorderRadius.circular(10)
+            borderRadius: BorderRadius.circular(10)
+  
+          ),
+
+          child:Column(
+            mainAxisAlignment:MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height:Get.height/16,
+                child: Icon(Icons.person,size: 50,color:Colors.red)),
+                 Divider(height:0.5,color:Colors.black26),
+              SizedBox(height:5),
+             
+              Container(
+                alignment: Alignment.center,
+                child: Text("Doctor Appointment",textAlign:TextAlign.center,style:TextStyle(color:Colors.black,fontSize:16,)))
+
+            ],
+          )
   
         ),
-
-        child:Column(
-          mainAxisAlignment:MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              height:Get.height/16,
-              child: Icon(Icons.person,size: 50,color:Colors.red)),
-               Divider(height:0.5,color:Colors.black26),
-            SizedBox(height:5),
-           
-            Container(
-              alignment: Alignment.center,
-              child: Text("Doctor Appointment",textAlign:TextAlign.center,style:TextStyle(color:Colors.black,fontSize:16,)))
-
-          ],
-        )
-  
-      ),
+     ),
   
     ],
   
